@@ -1,0 +1,7 @@
+---
+- hosts: [test]
+  remote_user: root
+  become: yes
+  tasks:
+        - name: update latest package
+          yum: name=* state=latest exclude=ssh*
