@@ -1,0 +1,8 @@
+--- 
+- hosts: [test]
+  user: root
+  tasks:
+  - name: add a string to the new file
+    replace: dest=/home/bp/test.conf 
+             regexp='^Welcome'
+             replace='Test'
