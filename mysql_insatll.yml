@@ -1,5 +1,0 @@
----
-- name: Docker Repo Installation
-  hosts: server1.balapobi.com
-  roles:
-          - mysql
