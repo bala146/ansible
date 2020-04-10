@@ -1,7 +1,0 @@
----
-- hosts: server1
-  tasks:
-    - name: Update the latest Package
-      yum:
-        name: '*'
-        state: latest
