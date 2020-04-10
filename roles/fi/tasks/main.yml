@@ -1,20 +1,6 @@
 ---
 # tasks file for roles/fi
-- name: HTTP Package Installation
+- name: Update the latest packages
   yum:
-          name: httpd
-          state: present
-- name: Start the Service
-  service:
-          name: httpd
-          state: started
-          enabled: yes
-- name: Enable Firewall Port
-  firewalld:
-          service: http
-          permanent: true
-          immediate: yes
-          state: enabled
-- template:
-        src: template.j2
-        dest: /var/www/html/index.html
+          name: '*'
+          state: latest
