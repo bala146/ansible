@@ -1,0 +1,10 @@
+---
+- name: Pull the docker images
+  docker_image:
+          name: hello-world
+          source: pull
+- name: Create Default Container
+  docker_container:
+          name: testsite
+          image: nginx
+          state: started
