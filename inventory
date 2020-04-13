@@ -2,9 +2,5 @@
 server1
 [dbservers]
 server2
-[prod]
-prodsrv1
-[test]
-testsrv1
-[dev]
-devsrv1
+[jenkins]
+server4
