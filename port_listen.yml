@@ -1,0 +1,16 @@
+---
+- name: Check the port Listening
+  hosts: server4
+  tasks:
+          - name: check the port 8080
+            wait_for:
+                    host: 192.168.43.226
+                    port: "{{ item }}"
+                    state: started
+                    delay: 0
+                    timeout: 1
+            ignore_errors: yes
+            loop:
+                    - 8080 # Jenkins
+                    - 22   # SSH
+                    - 80   # Apache
