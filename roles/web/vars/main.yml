@@ -1,2 +1,5 @@
 ---
 # vars file for roles/web
+package: httpd
+servicename: httpd
+portnumber: http
