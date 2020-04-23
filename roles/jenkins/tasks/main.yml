@@ -4,25 +4,38 @@
   get_url:
           url: http://pkg.jenkins.io/redhat-stable/jenkins.repo
           dest: /etc/yum.repos.d/jenkins.repo
+  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 - rpm_key:
         key: http://pkg.jenkins.io/redhat-stable/jenkins.io.key
         state: present
+  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Install the Depedency packages
-  yum:
+  yum:                                
           name: java-1.8.0-openjdk
           state: present
+  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install the Depedency packages for Debian
+  apt:                                
+          name: java-1.8.0-openjdk
+          state: present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install the Jenkins Package
-  yum:
-          name: jenkins
-          state: present
+  yum: name=jenkins state=present
+  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install the Jenkins Package for Debian
+  apt: name=jenkins state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Start the Jenkins service
   service:
           name: jenkins
           state: started
           enabled: yes
+
 - name: Start the firewall service
   firewalld:
           port: 8080/tcp

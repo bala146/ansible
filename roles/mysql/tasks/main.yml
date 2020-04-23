@@ -9,6 +9,17 @@
             - mysql-devel
             - gcc
     state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install Mysql package for Debian
+  apt:
+    name:
+            - mysql-server
+            - python3-PyMySQL
+            - mysql-devel
+            - gcc
+    state: present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Configure SELinux to start mysql on any port
   seboolean:

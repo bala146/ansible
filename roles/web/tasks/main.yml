@@ -1,9 +1,13 @@
 ---
 # tasks file for roles/fi
 - name: HTTP Package Installation
-  yum:
-          name: httpd
-          state: present
+  yum: name=httpd state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'        
+
+- name: Install apache2 package
+  apt: name=apache2 state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: Start the Service
   service:
           name: httpd

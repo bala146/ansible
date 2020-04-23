@@ -1,0 +1,8 @@
+---
+# tasks file for roles/vagrant
+- name: Install the PreRequsite GIT Package
+  yum: name=git state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+- name: Install the PreRequsite GIT Package for Debian
+  apt: name=git state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
