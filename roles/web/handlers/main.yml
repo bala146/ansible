@@ -1,2 +1,4 @@
 ---
 # handlers file for roles/web
+- name: reload firewall
+  service: name=firewalld state=reloaded

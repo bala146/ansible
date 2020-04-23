@@ -13,18 +13,28 @@
           name: httpd
           state: started
           enabled: yes
+
+- name: Start the apache2 Service
+  service:
+          name: apache2
+          state: started
+          enabled: yes
+
 - name: Start the Firewalld Service
   service:
           name: firewalld
           state: started
           enabled: yes
           
-- name: Enable Firewall Port
+- name: Enable Firewall Port for http
   firewalld:
           service: http
           permanent: true
           immediate: yes
           state: enabled
+  notify:
+          - reload firewall
+
 - template:
         src: template.j2
         dest: /var/www/html/index.html
