@@ -1,0 +1,5 @@
+---
+- name: Install Portainer
+  hosts: server1
+  roles:
+          - portainer
