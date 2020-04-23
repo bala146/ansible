@@ -8,11 +8,17 @@
   apt: name=apache2 state=present
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Start the Service
+- name: Start the HTTPD Service
   service:
           name: httpd
           state: started
           enabled: yes
+- name: Start the Firewalld Service
+  service:
+          name: firewalld
+          state: started
+          enabled: yes
+          
 - name: Enable Firewall Port
   firewalld:
           service: http
