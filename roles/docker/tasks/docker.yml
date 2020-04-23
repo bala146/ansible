@@ -1,7 +1,7 @@
 ---
 - name: Pull the docker images
   docker_image:
-          name: hello-world
+          name: nginx
           source: pull
 - name: Create Default Container
   docker_container:
