@@ -1,0 +1,6 @@
+---
+- name: Install Mysql package
+  yum: name={{ item }} state=present
+  loop: "{{ mysql_packages_redhat }}"
+  notify:
+          - start mysqld

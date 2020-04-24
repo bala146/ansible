@@ -1,0 +1,6 @@
+---
+- name: Install Mysql package for Debian
+  apt: name={{ item }} state=present
+  loop: "{{ mysql_packages_debian }}"
+  notify:
+          - start mysql
