@@ -1,6 +1,6 @@
 # Ansible Playbooks
 
-[![Build Status]](https://github.com/bala146/ansible)
+[![Build Status](https://github.com/bala146/ansible)]
 
 Before proceeding make sure ansible is instsalled on the control node.
 ansible.cfg and inventory are already created, just change the hostname and remote user
