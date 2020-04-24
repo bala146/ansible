@@ -1,12 +1,8 @@
 ---
 # tasks file for roles/fi
 - name: Update the latest packages
-  yum:
-          name: '*'
-          state: latest
-  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  yum: name='*' state=latest exclude=docker*
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 - name: Update the latest packages for Debian
-  apt:
-          name: '*'
-          state: latest
+  apt: upgrade=dist force_apt_get=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
