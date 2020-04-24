@@ -1,2 +1,23 @@
 ---
 # vars file for roles/mysql
+mysql_packages_redhat:
+        - mysql-server
+        - python3-PyMySQL
+        - mysql-devel
+        - gcc
+
+mysql_packages_debian:
+        - mysql-server
+        - python-pip
+        - python-mysqldb
+        - mysql-common
+
+mysql_user_name: dbadmin
+mysql_user_password: dbadmin
+mysql_user_priv: "*.*:ALL"
+mysql_user_host: '%'
+mysql_nolog: true
+mysql_global_my_cnf: /etc/my.cnf
+mysql_template_cnf: my.cnf.j2
+mysqld_service_daemon: mysqld
+mysql_service_daemon: mysql

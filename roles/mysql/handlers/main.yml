@@ -1,2 +1,6 @@
 ---
 # handlers file for roles/mysql
+- name: start mysqld
+  service: name={{ mysqld_service_daemon }} state=started enabled=yes
+- name: start mysql
+  service: name={{ mysql_service_daemon }} state=started enabled=yes

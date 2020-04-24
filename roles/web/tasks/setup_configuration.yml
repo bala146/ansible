@@ -7,5 +7,5 @@
   uri:
           url: http://{{ansible_default_ipv4.address}}
           return_content: yes
-  register: http_verify
-- debug: var=http_verify
+          #  register: http_verify
+          #- debug: var=http_verify

@@ -1,26 +1,15 @@
 ---
-- name: httpd Package Installation
-  yum:
-          name: "{{ package }}"
-          state: present
-
-- name: Start the httpd Service
-  service:
-          name: "{{ servicename }}"
-          state: started
-          enabled: yes
-
-- name: Start the firewalld Service
-  service:
-          name: "{{ servicename }}"
-          state: started
-          enabled: yes
+- name: httpd Package Installation and start the service
+  yum: name= "{{ package_install }}" state=present
+  notify:
+          - start httpd
+          - start firewalld
           
 - name: Enable firewall Port for http
   firewalld:
-          service: "{{ portnumber }}"
+          service: "{{ rule }}"
           permanent: true
-          immediate: yes
+          immediate: true
           state: enabled
   notify:
           - reload firewall

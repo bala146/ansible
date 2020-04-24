@@ -2,3 +2,18 @@
 # handlers file for roles/web
 - name: reload firewall
   service: name=firewalld state=reloaded
+
+- name: start firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: restart firewalld
+  service: name=firewalld state=restarted
+
+- name: restart httpd
+  service: name=httpd  state=restarted
+
+- name: start httpd
+  service: name=httpd  state=started enabled=yes
+
+- name: reload httpd
+  service: name=httpd  state=reloaded
