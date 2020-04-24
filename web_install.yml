@@ -1,5 +1,5 @@
 ---
 - name: Install Apache Server
-  hosts: server1.balapobi.com
+  hosts: webservers
   roles:
           - web

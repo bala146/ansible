@@ -1,6 +1,8 @@
 [webservers]
 server1
+server2
 [dbservers]
 server2
+server1
 [jenkins]
 server4

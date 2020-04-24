@@ -1,5 +1,5 @@
 ---
 - name: First Installation Procedure
-  hosts: server1
+  hosts: webservers
   roles:
           - fi
