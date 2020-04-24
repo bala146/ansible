@@ -1,60 +1,13 @@
 ---
 # tasks file for roles/docker
-- name: Add Docker Repository
-  get_url:
-          url: https://download.docker.com/linux/centos/docker-ce.repo
-          dest: /etc/yum.repos.d/docker.repo
-- name: Install the Depedency packages
-  yum:
-          name:
-                  - yum-utils
-                  - device-mapper-persistent-data
-                  - lvm2
-          state: present
-  when: ansible_distrubution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+---
+# tasks file for roles/web
+- include_tasks: setup_docker_redhat.yml
+  when: ansible_os_family == 'RedHat'
 
-- name: Install the Depedency packages for Debian
-  apt:
-          name:
-                  - yum-utils
-                  - device-mapper-persistent-data
-                  - lvm2
-          state: present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+- include_tasks: setup_docker_debian.yml
+  when: ansible_os_family == 'Debian'
 
-- name: Install the Docker Packages 1
-  yum:
-          name:
-                  - docker-ce-3:18.09.1-3.el7
-                  - containerd.io
-          state: present
-  when: ansible_distrubution == 'CentOS'or ansible_distribution == 'Red Hat Enterprise Linux'
-
-- name: Install the Docker Packages 1 for Debian
-  apt:
-          name:
-                  - docker-ce
-                  - containerd.io
-          state: present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: Install PIP Modules
-  pip:
-          name: docker 
-
-- name: Start the Docker service
-  service:
-          name: docker
-          state: started
-          enabled: yes
-
-- name: Creating Docker User
-  user:
-          name: dkadmin
-          groups: docker
-          shell: /bin/bash
-          state: present
-          comment: "Docker User"
-          password: 'dkadmin'
+- include_tasks: setup_configuration.yml
 
 - import_tasks: docker.yml 
