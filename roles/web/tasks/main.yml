@@ -1,59 +1,9 @@
 ---
-# tasks file for roles/fi
-- name: HTTP Package Installation
-  yum:
-          name: "{{ package }}"
-          state: present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'        
+# tasks file for roles/web
+- include_tasks: setup_redhat_http.yml
+  when: ansible_os_family == 'RedHat'
 
-- name: Install apache2 package
-  apt: name=apache2 update_cache=yes state=present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+- include_tasks: setup_debian_http.yml
+  when: ansible_os_family == 'Debian'
 
-- name: Start the HTTPD Service
-  service:
-          name: "{{ servicename }}"
-          state: started
-          enabled: yes
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'        
-
-- name: Start the apache2 Service
-  service:
-          name: apache2
-          state: restarted
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: Start the Firewalld Service
-  service:
-          name: firewalld
-          state: started
-          enabled: yes
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'        
-          
-- name: Enable Firewall Port for http
-  firewalld:
-          service: "{{ portnumber }}"
-          permanent: true
-          immediate: yes
-          state: enabled
-  notify:
-          - reload firewall
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'        
-
-- name: Enable Firewall Port for http
-  ufw:
-          rule: allow
-          port: '80'
-          proto: tcp
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- template:
-        src: template.j2
-        dest: /var/www/html/index.html
-
-- name: Check the Web Page
-  uri:
-          url: http://{{ansible_default_ipv4.address}}
-          return_content: yes
-  register: http_verify
-- debug: var=http_verify
+- include_tasks: setup_configuration.yml

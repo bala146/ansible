@@ -1,0 +1,16 @@
+---
+- name: Install apache2 package
+  apt: name=apache2 update_cache=yes state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Start the apache2 Service
+  service:
+          name: apache2
+          state: restarted
+
+- name: Enable Firewall Port for http
+  ufw:
+          rule: allow
+          port: '80'
+          proto: tcp
+

@@ -1,0 +1,11 @@
+---
+- template:
+        src: template.j2
+        dest: /var/www/html/index.html
+
+- name: Check the Web Page
+  uri:
+          url: http://{{ansible_default_ipv4.address}}
+          return_content: yes
+  register: http_verify
+- debug: var=http_verify
