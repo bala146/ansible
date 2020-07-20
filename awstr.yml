@@ -1,0 +1,10 @@
+---
+- name: Create EC2 instance with ansible
+  hosts: local
+  connection: local
+  tasks:
+          - name: launch awsinstanceansible
+            ec2:
+                    state: absent
+                    instance_ids: i-0cddccf7496a918ea
+                    region: ap-south-1

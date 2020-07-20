@@ -1,0 +1,15 @@
+---
+- name: Create EC2 instance with ansible
+  hosts: local
+  connection: local
+  tasks:
+          - name: launch awsinstanceansible
+            ec2:
+                    key_name: awsk
+                    instance_type: t2.micro
+                    image: ami-052c08d70def0ac62
+                    region: ap-south-1
+                    wait: yes
+                    count: 1
+                    aws_access_key: AKIAJWM5N37LKHZEZU7A
+                    aws_secret_key: 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 
