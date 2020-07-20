@@ -11,5 +11,3 @@
                     region: ap-south-1
                     wait: yes
                     count: 1
-                    aws_access_key: AKIAJWM5N37LKHZEZU7A
-                    aws_secret_key: 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 
