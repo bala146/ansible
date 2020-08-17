@@ -1,0 +1,15 @@
+---
+- name: Grafana Package Installation and start the service
+  yum: name= "{{ package_install }}" state=present
+  notify:
+          - start grafana
+          - start firewalld
+          
+- name: Enable firewall Port for grafana
+  firewalld:
+          service: "{{ rule }}"
+          permanent: true
+          immediate: true
+          state: enabled
+  notify:
+          - reload firewall

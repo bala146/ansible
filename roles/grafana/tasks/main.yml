@@ -1,0 +1,9 @@
+---
+# tasks file for roles/web
+- include_tasks: setup_redhat_grafana.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: setup_debian_grafana.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: setup_configuration_grafana.yml

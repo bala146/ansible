@@ -1,0 +1,6 @@
+---
+- name: Install Apache Server
+  hosts: webservers
+  roles:
+          - grafana
+

@@ -1,0 +1,19 @@
+---
+# handlers file for roles/grafana
+- name: reload firewall
+  service: name=firewalld state=reloaded
+
+- name: start firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: restart firewalld
+  service: name=firewalld state=restarted
+
+- name: restart grafana
+  service: name=grafana-server state=restarted
+
+- name: start grafana
+  service: name=grafana-server  state=started enabled=yes
+
+- name: stop grafana
+  service: name=grafana-server  state=stop

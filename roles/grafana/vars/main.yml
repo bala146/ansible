@@ -1,0 +1,5 @@
+---
+# vars file for roles/grafana
+package_install: grafana
+service_name: grafana-server
+rule: 3000/tcp
