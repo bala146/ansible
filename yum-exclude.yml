@@ -4,4 +4,4 @@
   become: yes
   tasks:
         - name: update latest package
-          yum: name=* state=latest exclude=ssh*
+          yum: name=* state=latest exclude=docker*
